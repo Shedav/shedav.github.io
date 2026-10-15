@@ -359,6 +359,10 @@ class Component extends DCLogic {
     if (n && n.animate && !this.reduced) n.animate([{ letterSpacing: '0.7em', opacity: 0, filter: 'blur(6px)' }, { letterSpacing: '0.28em', opacity: 1, filter: 'blur(0)' }], { duration: 2200, easing: 'cubic-bezier(.16,.8,.2,1)' });
     const loop = t => { if (!this.alive) return; this.frame(t); this.raf = requestAnimationFrame(loop); };
     this.raf = requestAnimationFrame(loop);
+    // the page is rendered by JS and the timeline sets its height in the first frame,
+    // so the browser's own jump to #hash lands in the wrong place: redo it once layout is final
+    const target = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (target) requestAnimationFrame(() => requestAnimationFrame(() => target.scrollIntoView({ behavior: 'instant' })));
   }
   componentDidUpdate(prev) {
     if (prev.accent !== this.props.accent) document.documentElement.style.setProperty('--accent', this.accent);
