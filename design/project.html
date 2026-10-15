@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<!-- Umami: cookieless analytics; data-domains keeps local runs out of the stats -->
+<script defer src="https://cloud.umami.is/script.js" data-website-id="UMAMI_WEBSITE_ID" data-domains="shedav.github.io"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&amp;family=Hanken+Grotesk:wght@300;400;500&amp;family=Geist+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+:root{--accent:#B4471B}
+html{scroll-behavior:smooth;background:#EAE0CE}
+body{margin:0;background:#EAE0CE;color:#1F170F;font-family:'Hanken Grotesk',sans-serif;-webkit-font-smoothing:antialiased}
+::selection{background:var(--accent);color:#EAE0CE}
+a{color:inherit;text-decoration:none;transition:color .25s}
+a:hover{color:var(--accent)}
+</style>
+</helmet>
+<div style="position:relative;overflow-x:clip">
+<div ref="{{ curtain }}" style="position:fixed;left:0;right:0;top:0;height:100vh;z-index:200;background:#1F170F;color:#EAE0CE;pointer-events:none;transform:translateY(calc(-100% - 130px))"><svg viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" style="position:absolute;left:0;bottom:calc(100% - 1px);width:100%;height:120px;display:block;"><path d="M0 120V42C180 6 400 8 620 44S1010 86 1210 34 1420 6 1440 14V120Z" fill="#4A2A1A"/><path d="M0 120V72C190 24 370 22 560 60S920 116 1100 62 1350 14 1440 40V120Z" fill="#1F170F"/></svg><svg viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" style="position:absolute;left:0;top:calc(100% - 1px);width:100%;height:120px;display:block;transform:scaleY(-1);"><path d="M0 120V42C180 6 400 8 620 44S1010 86 1210 34 1420 6 1440 14V120Z" fill="#4A2A1A"/><path d="M0 120V72C190 24 370 22 560 60S920 116 1100 62 1350 14 1440 40V120Z" fill="#1F170F"/></svg><div data-ct="" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;padding:0 20px;text-align:center"><span data-ct-num="" style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#C2B29B">(P/{{ p.n }}) Field experiment</span><span data-ct-name="" style="font-family:Syncopate,sans-serif;font-weight:700;font-size:clamp(20px,3vw,44px);letter-spacing:0.12em;margin-right:-0.12em;text-transform:uppercase">{{ p.title }}</span><i data-ct-line="" style="display:block;width:min(320px,60vw);height:1px;background:var(--accent)"></i></div></div>
+
+<nav style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px clamp(20px,4vw,56px);background:#EAE0CE">
+  <a href="./" data-go="" style="font-family:Syncopate,sans-serif;font-weight:700;font-size:12px;letter-spacing:0.24em">A. SHEDAV</a>
+  <a href="./#projects" data-go="" style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase">← All projects</a>
+</nav>
+
+<header data-screen-label="Project header" style="max-width:1440px;margin:0 auto;box-sizing:border-box;padding:clamp(140px,14vw,200px) clamp(20px,4vw,56px) 64px;display:flex;flex-direction:column;gap:28px">
+  <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6F6152">(P/{{ p.n }}) Field experiment</span>
+  <h1 style="margin:0;font-family:Syncopate,sans-serif;font-weight:700;font-size:clamp(34px,6vw,96px);letter-spacing:0.04em;line-height:1;text-transform:uppercase;text-wrap:balance">{{ p.title }}</h1>
+  <p style="margin:0;max-width:760px;font-size:clamp(20px,2vw,28px);line-height:1.35;font-weight:300;text-wrap:pretty">{{ p.summary }}</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:28px;border-top:1px solid #C9BBA3;padding-top:24px;margin-top:24px">
+    <div style="display:flex;flex-direction:column;gap:8px"><span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6F6152">Year</span><span style="font-size:17px">{{ p.year }}</span></div>
+    <div style="display:flex;flex-direction:column;gap:8px"><span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6F6152">Role</span><span style="font-size:17px">{{ p.role }}</span></div>
+    <div style="display:flex;flex-direction:column;gap:8px"><span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6F6152">Stack</span><span style="font-size:17px">{{ p.stack }}</span></div>
+    <div style="display:flex;flex-direction:column;gap:8px"><span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6F6152">{{ p.linksLabel }}</span><span style="display:flex;gap:20px;font-size:17px"><sc-for list="{{ p.links }}" as="l"><a href="{{ l.href }}" data-umami-event="project-link" data-umami-event-project="{{ p.slug }}" data-umami-event-link="{{ l.label }}" target="_blank" rel="noopener" style="border-bottom:1px solid var(--accent)">{{ l.label }} ↗</a></sc-for>{{ p.status }}</span></div>
+  </div>
+</header>
+
+<section data-screen-label="Overview" style="max-width:1440px;margin:0 auto;box-sizing:border-box;padding:clamp(100px,12vw,180px) clamp(20px,4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:64px clamp(40px,6vw,120px)">
+  <div style="display:flex;flex-direction:column;gap:20px">
+    <span style="font-family:Syncopate,sans-serif;font-weight:700;font-size:12px;letter-spacing:0.16em;text-transform:uppercase">Overview</span>
+    <p style="margin:0;font-size:19px;line-height:1.65;color:#3A3027;text-wrap:pretty">{{ p.overview }}</p>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:20px">
+    <span style="font-family:Syncopate,sans-serif;font-weight:700;font-size:12px;letter-spacing:0.16em;text-transform:uppercase">Approach</span>
+    <p style="margin:0;font-size:19px;line-height:1.65;color:#3A3027;text-wrap:pretty">{{ p.approach }}</p>
+  </div>
+</section>
+
+<section data-screen-label="Gallery" style="max-width:1440px;margin:0 auto;box-sizing:border-box;padding:0 clamp(20px,4vw,56px) clamp(100px,12vw,180px);display:flex;flex-direction:column;gap:clamp(16px,2vw,28px)">
+  <sc-for list="{{ p.shots }}" as="sh"><img src="projects/{{ sh.src }}" alt="{{ sh.alt }}" loading="lazy" style="width:100%;height:auto;aspect-ratio:16/10;display:block;border-radius:2px;background:#1F170F"></sc-for>
+</section>
+
+<a href="project.html?p={{ next.slug }}" data-go="" data-go-num="(P/{{ next.n }}) Field experiment" data-go-name="{{ next.title }}" data-screen-label="Next project" style="display:block;background:#1F170F;color:#EAE0CE;padding:clamp(80px,10vw,140px) clamp(20px,4vw,56px)" style-hover="color:#EAE0CE">
+  <div style="max-width:1440px;margin:0 auto;display:flex;flex-direction:column;gap:24px">
+    <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#C2B29B">Next project · {{ next.n }}</span>
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap">
+      <span style="font-family:Syncopate,sans-serif;font-weight:700;font-size:clamp(28px,5vw,80px);letter-spacing:0.04em;line-height:1;text-transform:uppercase">{{ next.title }}</span>
+      <span style="font-size:clamp(28px,5vw,80px);font-weight:300;color:var(--accent)">→</span>
+    </div>
+  </div>
+</a>
+
+<footer style="background:#1F170F;border-top:1px solid #3A3027;padding:28px clamp(20px,4vw,56px);display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#A39581">
+  <span>© 2026 Andrei Shedav</span>
+  <a href="./#contact" data-go="" style="color:#EAE0CE">Say hello →</a>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#B4471B&quot;,&quot;options&quot;:[&quot;#B4471B&quot;,&quot;#8C2F1C&quot;,&quot;#B7792A&quot;,&quot;#2F5D62&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Look&quot;}}">
+const PROJECTS = [
+  { slug: 'builder', n: '01', title: 'Builder', year: '2026', role: 'Solo: product, design & development', stack: 'Next.js 16 · React · TypeScript · JMESPath · Vercel',
+    linksLabel: 'Links', status: '', links: [{ label: 'Live', href: 'https://builder-web-six.vercel.app' }, { label: 'Try the demo', href: 'https://builder-web-six.vercel.app/editor/todo' }],
+    shots: [{ src: 'builder-1.jpg', alt: 'Builder editor: layers, canvas and inspector' }, { src: 'builder-2.jpg', alt: 'Data graph: sources, blocks and the lines between them' }, { src: 'builder-3.jpg', alt: 'Render zones: each block marked static or client' }],
+    summary: 'A visual page builder where pages are wired to real API data without writing the wiring.',
+    overview: 'A page that shows live API data usually means hand-written fetching, mapping and state code, or copying the data into someone else\'s CMS. Visual builders make the layout easy but hide where each value comes from, so a wrong number on the page is hard to trace. In Builder you lay out a page from blocks and draw the data it needs as lines from sources to blocks.',
+    approach: 'A page is a JSON document, not generated code, so it can be saved, versioned and validated. Every change goes through one operation layer shared by the UI and undo. Each step on a line is a pure JMESPath expression that runs the same on the server and in the browser, and can be tested step by step. Each block picks its own rendering (static, ISR, server or client) from how fresh its data must be, so search engines still get real HTML.' },
+  { slug: 'pronounce', n: '02', title: 'Pronounce', year: '2026', role: 'Solo: design & development', stack: 'React 19 · TypeScript · Azure Speech · Cloudflare Workers',
+    linksLabel: 'Status', status: 'In development, not public yet', links: [],
+    shots: [{ src: 'pronounce-1.jpg', alt: 'Pronounce: phrase practice with per-sound coaching' }],
+    summary: 'An English pronunciation coach that hears each sound and shows exactly what to fix.',
+    overview: 'Language apps tell you a phrase sounded good or bad, but rarely which sound went wrong or how a native speaker says it. In Pronounce you practise short scripted phrases: record yourself, and the app highlights the words and sounds that need work, with reference audio for the phrase, each word and each sound.',
+    approach: 'The browser streams microphone audio straight to Azure Speech, and a Cloudflare Worker keeps the key private by handing out short-lived tokens. Raw provider scores are misleading, so every result is compared with a baseline from Azure\'s own reference voice, and coaching flags only the sounds that fall clearly below it. Recordings are never stored.' }
+];
+
+class Component extends DCLogic {
+  curtain = React.createRef();
+  get idx() {
+    let s = null;
+    try { s = new URLSearchParams(window.location.search).get('p') || window.location.hash.replace('#', ''); } catch (e) {}
+    const i = PROJECTS.findIndex(p => p.slug === s); return i < 0 ? 0 : i;
+  }
+  get accent() { return this.props.accent ?? '#B4471B'; }
+  renderVals() {
+    const i = this.idx;
+    return { p: PROJECTS[i], next: PROJECTS[(i + 1) % PROJECTS.length], curtain: this.curtain };
+  }
+  componentDidMount() {
+    document.documentElement.style.setProperty('--accent', this.accent);
+    document.title = `${PROJECTS[this.idx].title} — Andrei Shedav`;
+    const cur = this.curtain.current;
+    this.reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // arrive under the dune that covered the home page: title fades up, then the dune lifts away
+    if (cur.animate && !this.reduced) {
+      cur.querySelector('[data-ct]').animate([{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'translateY(-24px)' }], { duration: 500, delay: 250, easing: 'ease-in', fill: 'both' });
+      cur.animate([{ transform: 'translateY(0)' }, { transform: 'translateY(calc(-100% - 130px))' }], { duration: 1000, delay: 450, easing: 'cubic-bezier(.7,0,.2,1)', fill: 'backwards' });
+    }
+    document.querySelectorAll('[data-go]').forEach(a => a.addEventListener('click', e => {
+      window.umami?.track('project-nav', { from: PROJECTS[this.idx].slug, to: a.getAttribute('href') });
+      if (e.metaKey || e.ctrlKey || e.shiftKey || this.reduced) return;
+      e.preventDefault();
+      cur.querySelector('[data-ct]').getAnimations().forEach(x => x.cancel());
+      this.cover(a.dataset.goNum || '', a.dataset.goName || '', a.getAttribute('href'));
+    }));
+    this.onShow = () => { if (cur.getAnimations) cur.getAnimations({ subtree: true }).forEach(a => a.cancel()); };
+    window.addEventListener('pageshow', this.onShow);
+  }
+  // a dune sweeps up over the page, then the destination's title settles on its horizon
+  cover(num, name, href) {
+    const cur = this.curtain.current, E = 'cubic-bezier(.7,0,.2,1)', q = s => cur.querySelector(s);
+    q('[data-ct-num]').textContent = num; q('[data-ct-name]').textContent = name;
+    const show = name ? 1 : 0;
+    cur.animate([{ transform: 'translateY(calc(100% + 130px))' }, { transform: 'translateY(0)' }], { duration: 950, easing: E, fill: 'forwards' });
+    q('[data-ct-name]').animate([{ letterSpacing: '0.6em', opacity: 0, filter: 'blur(6px)' }, { letterSpacing: '0.12em', opacity: show, filter: 'blur(0)' }], { duration: 900, delay: 380, easing: 'cubic-bezier(.16,.8,.2,1)', fill: 'both' });
+    q('[data-ct-num]').animate([{ opacity: 0, transform: 'translateY(8px)' }, { opacity: show, transform: 'none' }], { duration: 600, delay: 480, easing: 'ease-out', fill: 'both' });
+    q('[data-ct-line]').animate([{ transform: 'scaleX(0)' }, { transform: `scaleX(${show})` }], { duration: 800, delay: 560, easing: E, fill: 'both' });
+    setTimeout(() => { window.location.href = href; }, name ? 1300 : 950);
+  }
+  componentDidUpdate(prev) { if (prev.accent !== this.props.accent) document.documentElement.style.setProperty('--accent', this.accent); }
+  componentWillUnmount() { window.removeEventListener('pageshow', this.onShow); }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Andrei Shedav — Senior Full Stack Engineer</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<!-- Umami: cookieless analytics; data-domains keeps local runs out of the stats -->
+<script defer src="https://cloud.umami.is/script.js" data-website-id="UMAMI_WEBSITE_ID" data-domains="shedav.github.io"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&amp;family=Hanken+Grotesk:wght@300;400;500&amp;family=Geist+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+:root{--accent:#B4471B}
+html{scroll-behavior:smooth;background:#EAE0CE}
+body{margin:0;background:#EAE0CE;color:#1F170F;font-family:'Hanken Grotesk',sans-serif;-webkit-font-smoothing:antialiased}
+::selection{background:var(--accent);color:#EAE0CE}
+a{color:inherit;text-decoration:none;transition:color .25s}
+a:hover{color:var(--accent)}
+.proj-row{display:grid;grid-template-columns:48px minmax(0,1.1fr) minmax(0,1fr) 170px;align-items:baseline;gap:12px 32px;padding:34px 0;border-top:1px solid #C9BBA3}
+.proj-row>:last-child{text-align:right}
+@media (max-width:860px){.proj-row{grid-template-columns:48px minmax(0,1fr)}.proj-row>:nth-child(n+3){grid-column:2;text-align:left}}
+html[data-cc="1"],html[data-cc="1"] *{cursor:none !important}
+</style>
+</helmet>
+<div style="position:relative;overflow-x:clip">
+<canvas ref="{{ bgCanvas }}" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;display:block"></canvas>
+<div ref="{{ curtain }}" style="position:fixed;left:0;right:0;top:0;height:100vh;z-index:200;background:#1F170F;color:#EAE0CE;pointer-events:none;transform:translateY(calc(100% + 130px))"><svg viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" style="position:absolute;left:0;bottom:calc(100% - 1px);width:100%;height:120px;display:block;"><path d="M0 120V42C180 6 400 8 620 44S1010 86 1210 34 1420 6 1440 14V120Z" fill="#4A2A1A"/><path d="M0 120V72C190 24 370 22 560 60S920 116 1100 62 1350 14 1440 40V120Z" fill="#1F170F"/></svg><svg viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" style="position:absolute;left:0;top:calc(100% - 1px);width:100%;height:120px;display:block;transform:scaleY(-1);"><path d="M0 120V42C180 6 400 8 620 44S1010 86 1210 34 1420 6 1440 14V120Z" fill="#4A2A1A"/><path d="M0 120V72C190 24 370 22 560 60S920 116 1100 62 1350 14 1440 40V120Z" fill="#1F170F"/></svg><div data-ct="" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;padding:0 20px;text-align:center"><span data-ct-num="" style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#C2B29B"></span><span data-ct-name="" style="font-family:Syncopate,sans-serif;font-weight:700;font-size:clamp(20px,3vw,44px);letter-spacing:0.12em;margin-right:-0.12em;text-transform:uppercase"></span><i data-ct-line="" style="display:block;width:min(320px,60vw);height:1px;background:var(--accent)"></i></div></div>
+
+<nav ref="{{ nav }}" style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:flex-end;gap:24px;padding:22px clamp(20px,4vw,56px);color:#1F170F;transition:color .4s">
+  <div style="display:flex;gap:clamp(14px,2.6vw,36px);flex-wrap:wrap;justify-content:flex-end;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase">
+    <a href="#about">About</a>
+    <a href="#chronology">Chronology</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section id="top" data-screen-label="Hero" style="position:relative;height:100vh;min-height:600px;overflow:hidden;background:#E9DCC6">
+  <canvas ref="{{ heroCanvas }}" style="position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:pan-y"></canvas>
+  <div style="position:absolute;left:0;right:0;top:23%;display:flex;flex-direction:column;align-items:center;gap:22px;pointer-events:none;text-align:center;padding:0 20px">
+    <h1 ref="{{ heroName }}" style="margin:0 -0.28em 0 0;font-family:Syncopate,sans-serif;font-weight:700;font-size:clamp(18px,4.2vw,64px);letter-spacing:0.28em;line-height:1;white-space:nowrap">ANDREI SHEDAV</h1>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.32em;text-transform:uppercase;margin-right:-0.32em">Senior Full Stack Engineer</span>
+  </div>
+  <div style="position:absolute;left:0;right:0;bottom:0;padding:0 clamp(20px,4vw,56px) 30px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;pointer-events:none;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#5E5141">
+    <span></span>
+    <span>Scroll ↓</span>
+  </div>
+</section>
+
+<section id="about" data-screen-label="About" style="position:relative;max-width:1100px;margin:0 auto;box-sizing:border-box;padding:clamp(140px,18vw,260px) clamp(20px,4vw,56px);display:flex;flex-direction:column;gap:40px">
+  <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6F6152">(01) About</span>
+  <p style="margin:0;font-size:clamp(28px,3.6vw,52px);line-height:1.22;font-weight:300;letter-spacing:-0.015em;text-wrap:pretty"><span ref="{{ aboutText }}" style="color:transparent;background-image:linear-gradient(#1F170F,#1F170F),linear-gradient(#C9BBA3,#C9BBA3);background-size:0% 100%,100% 100%;background-repeat:no-repeat;-webkit-background-clip:text;background-clip:text">I'm a full stack engineer with 11 years of building web and mobile products across transportation, cloud, energy and FinTech. I care about TypeScript, React, frontend architecture and performance, and I own what I ship, from design to production.</span></p>
+  <span data-reveal="0" style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.08em;color:#6F6152">— A. Shedav, Warsaw, Poland</span>
+</section>
+
+<section id="chronology" ref="{{ chSec }}" data-screen-label="Chronology" style="position:relative;height:400vh">
+  <div style="position:sticky;top:0;height:100vh;overflow:hidden">
+    <div style="position:absolute;top:96px;right:clamp(20px,4vw,56px);font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6F6152;z-index:2" ref="{{ chCount }}">00 / 04</div>
+    <div ref="{{ chTrack }}" style="position:absolute;left:0;top:0;height:100%;display:flex;padding-left:clamp(20px,4vw,56px);will-change:transform">
+      <div style="position:absolute;left:0;right:0;top:58%;height:1px;background:#C9BBA3"></div>
+      <div ref="{{ chProg }}" style="position:absolute;left:0;top:calc(58% - 1px);height:3px;width:0;background:var(--accent);transform-origin:0 0;transform:scaleX(0)"></div>
+
+      <div style="position:relative;flex:0 0 min(84vw,640px);height:100%">
+        <div style="position:absolute;left:0;right:40px;bottom:calc(42% + 28px);display:flex;flex-direction:column;gap:22px">
+          <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6F6152">(02) Chronology</span>
+          <h2 style="margin:0;font-family:Syncopate,sans-serif;font-weight:700;font-size:clamp(30px,4.2vw,60px);letter-spacing:0.04em;line-height:1.05;text-transform:uppercase">The route<br>so far</h2>
+        </div>
+        <span style="position:absolute;left:0;top:calc(58% + 36px);font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6F6152">Keep scrolling to travel →</span>
+      </div>
+
+      <div style="position:relative;display:flex;height:100%">
+        <div data-co="" style="position:absolute;left:0;right:12px;bottom:calc(42% + 52px + clamp(56px,7.5vw,112px) * 0.9);height:10px;border:1px solid var(--accent);border-bottom:0;box-sizing:border-box"><span data-co-label="" style="position:absolute;left:0;bottom:calc(100% + 10px);white-space:nowrap;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent)">itv.by · Belarus</span></div>
+        <div data-wp="" data-year="2014" style="position:relative;flex:0 0 min(92vw,780px);height:100%">
+          <span data-wp-dot="" style="position:absolute;left:-6px;top:calc(58% - 6px);width:13px;height:13px;border-radius:50%;background:#EAE0CE;border:1.5px solid #1F170F;box-sizing:border-box;transition:background .4s,border-color .4s"></span>
+          <div data-wp-year="" style="position:absolute;left:0;bottom:calc(42% + 28px);font-family:Syncopate,sans-serif;font-size:clamp(56px,7.5vw,112px);line-height:0.9;color:#CDBFA8;transition:color .5s">2014</div>
+          <div data-wp-body="" style="position:absolute;left:clamp(28px,24%,190px);right:clamp(28px,8%,64px);top:calc(58% + 36px);display:flex;flex-direction:column;gap:10px;opacity:0.4;transition:opacity .5s">
+            <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6F6152">Sep 2014 — Feb 2015 · 6 mos</span>
+            <h3 style="margin:4px 0 0;font-family:Syncopate,sans-serif;font-weight:700;font-size:clamp(16px,1.5vw,21px);letter-spacing:0.08em;text-transform:uppercase;line-height:1.3">Frontend Developer</h3>
+            <span style="font-size:17px;font-weight:500;color:var(--accent)">Online TV and digital media</span>
+            <p style="margin:6px 0 0;font-size:16px;line-height:1.55;color:#4A3F33;max-width:440px;text-wrap:pretty">Built Smart TV apps for Samsung, LG and MAG, and moved them to newer TV SDKs.</p>
+            <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#6F6152;margin-top:6px">Smart TV · Samsung · LG · MAG</span>
+          </div>
+        </div>
+
+      </div>
+      <div style="position:relative;display:flex;height:100%">
+        <div data-co="" style="position:absolute;left:0;right:12px;bottom:calc(42% + 52px + clamp(56px,7.5vw,112px) * 0.9);height:10px;border:1px solid var(--accent);border-bottom:0;box-sizing:border-box"><span data-co-label="" style="position:absolute;left:0;bottom:calc(100% + 10px);white-space:nowrap;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent)">IBA Group · Belarus</span></div>
+        <div data-wp="" data-year="2015" style="position:relative;flex:0 0 min(92vw,780px);height:100%">
+          <span data-wp-dot="" style="position:absolute;left:-6px;top:calc(58% - 6px);width:13px;height:13px;border-radius:50%;background:#EAE0CE;border:1.5px solid #1F170F;box-sizing:border-box;transition:background .4s,border-color .4s"></span>
+          <div data-wp-year="" style="position:absolute;left:0;bottom:calc(42% + 28px);font-family:Syncopate,sans-serif;font-size:clamp(56px,7.5vw,112px);line-height:0.9;color:#CDBFA8;transition:color .5s">2015</div>
+          <div data-wp-body="" style="position:absolute;left:clamp(28px,24%,190px);right:clamp(28px,8%,64px);top:calc(58% + 36px);display:flex;flex-direction:column;gap:10px;opacity:0.4;transition:opacity .5s">
+            <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6F6152">Mar 2015 — Sep 2015 · 7 mos</span>
+            <h3 style="margin:4px 0 0;font-family:Syncopate,sans-serif;font-weight:700;font-size:clamp(16px,1.5vw,21px);letter-spacing:0.08em;text-transform:uppercase;line-height:1.3">Frontend Developer</h3>
+            <span style="font-size:17px;font-weight:500;color:var(--accent)">Client: Thunderhead</span>
+            <p style="margin:6px 0 0;font-size:16px;line-height:1.55;color:#4A3F33;max-width:440px;text-wrap:pretty">Built features and reusable UI components for the ONE Engagement Hub web app in an Agile Scrum team.</p>
+            <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#6F6152;margin-top:6px">JavaScript · UI components</span>
+          </div>
+        </div>
+
+      </div>
+      <div style="position:relative;display:flex;height:100%">
+        <div data-co="" style="position:absolute;left:0;right:12px;bottom:calc(42% + 52px + clamp(56px,7.5vw,112px) * 0.9);height:10px;border:1px solid var(--accent);border-bottom:0;box-sizing:border-box"><span data-co-label="" style="position:absolute;left:0;bottom:calc(100% + 10px);white-space:nowrap;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent)">Pleeco · USA, remote</span></div>
+        <div data-wp="" data-year="2015" style="position:relative;flex:0 0 min(92vw,780px);height:100%">
+          <span data-wp-dot="" style="position:absolute;left:-6px;top:calc(58% - 6px);width:13px;height:13px;border-radius:50%;background:#EAE0CE;border:1.5px solid #1F170F;box-sizing:border-box;transition:background .4s,border-color .4s"></span>
+          <div data-wp-year="" style="position:absolute;left:0;bottom:calc(42% + 28px);font-family:Syncopate,sans-serif;font-size:clamp(56px,7.5vw,112px);line-height:0.9;color:#CDBFA8;transition:color .5s">2015</div>
+          <div data-wp-body="" style="position:absolute;left:clamp(28px,24%,190px);right:clamp(28px,8%,64px);top:calc(58% + 36px);display:flex;flex-direction:column;gap:10px;opacity:0.4;transition:opacity .5s">
+            <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6F6152">Oct 2015 — Sep 2018 · 3 yrs</span>
+            <h3 style="margin:4px 0 0;font-family:Syncopate,sans-serif;font-weight:700;font-size:clamp(16px,1.5vw,21px);letter-spacing:0.08em;text-transform:uppercase;line-height:1.3">Frontend Developer</h3>
+            <span style="font-size:17px;font-weight:500;color:var(--accent)">FinTech for banks and broker-dealers</span>
+            <p style="margin:6px 0 0;font-size:16px;line-height:1.55;color:#4A3F33;max-width:440px;text-wrap:pretty">Moved a platform for banks and broker-dealers from a legacy stack to React. Built a data aggregation engine on Crossfilter.js and a D3.js chart library for configurable dashboards.</p>
+            <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#6F6152;margin-top:6px">React · D3.js · Crossfilter.js</span>
+          </div>
+        </div>
+
+      </div>
+      <div style="position:relative;display:flex;height:100%">
+        <div data-co="" style="position:absolute;left:0;right:12px;bottom:calc(42% + 52px + clamp(56px,7.5vw,112px) * 0.9);height:10px;border:1px solid var(--accent);border-bottom:0;box-sizing:border-box"><span data-co-label="" style="position:absolute;left:0;bottom:calc(100% + 10px);white-space:nowrap;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent)">Sphere Partners · USA, remote · Oct 2018 — Aug 2026 · 7 yrs 11 mos</span></div>
+        <div data-wp="" data-year="2018" style="position:relative;flex:0 0 min(92vw,780px);height:100%">
+          <span data-wp-dot="" style="position:absolute;left:-6px;top:calc(58% - 6px);width:13px;height:13px;border-radius:50%;background:#EAE0CE;border:1.5px solid #1F170F;box-sizing:border-box;transition:background .4s,border-color .4s"></span>
+          <div data-wp-year="" style="position:absolute;left:0;bottom:calc(42% + 28px);font-family:Syncopate,sans-serif;font-size:clamp(56px,7.5vw,112px);line-height:0.9;color:#CDBFA8;transition:color .5s">2018</div>
+          <div data-wp-body="" style="position:absolute;left:clamp(28px,24%,190px);right:clamp(28px,8%,64px);top:calc(58% + 36px);display:flex;flex-direction:column;gap:10px;opacity:0.4;transition:opacity .5s">
+            <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6F6152">Oct 2018 — Apr 2021 · 2 yrs 7 mos</span>
+            <h3 style="margin:4px 0 0;font-family:Syncopate,sans-serif;font-weight:700;font-size:clamp(16px,1.5vw,21px);letter-spacing:0.08em;text-transform:uppercase;line-height:1.3">React Native Developer</h3>
+            <span style="font-size:17px;font-weight:500;color:var(--accent)">GettUK</span>
+            <p style="margin:6px 0 0;font-size:16px;line-height:1.55;color:#4A3F33;max-width:440px;text-wrap:pretty">Sole mobile developer on the B2B React Native apps: shipped App Store and Google Play releases, moved the codebase to TypeScript, built an E2E testing framework and added accessibility support.</p>
+            <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#6F6152;margin-top:6px">React Native · TypeScript · E2E · a11y</span>
+          </div>
+        </div>
+
+        <div data-wp="" data-year="2021" style="position:relative;flex:0 0 min(92vw,780px);height:100%">
+          <span data-wp-dot="" style="position:absolute;left:-6px;top:calc(58% - 6px);width:13px;height:13px;border-radius:50%;background:#EAE0CE;border:1.5px solid #1F170F;box-sizing:border-box;transition:background .4s,border-color .4s"></span>
+          <div data-wp-year="" style="position:absolute;left:0;bottom:calc(42% + 28px);font-family:Syncopate,sans-serif;font-size:clamp(56px,7.5vw,112px);line-height:0.9;color:#CDBFA8;transition:color .5s">2021</div>
+          <div data-wp-body="" style="position:absolute;left:clamp(28px,24%,190px);right:clamp(28px,8%,64px);top:calc(58% + 36px);display:flex;flex-direction:column;gap:10px;opacity:0.4;transition:opacity .5s">
+            <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6F6152">May 2021 — Apr 2022 · 1 yr</span>
+            <h3 style="margin:4px 0 0;font-family:Syncopate,sans-serif;font-weight:700;font-size:clamp(16px,1.5vw,21px);letter-spacing:0.08em;text-transform:uppercase;line-height:1.3">Senior Frontend Developer</h3>
+            <span style="font-size:17px;font-weight:500;color:var(--accent)">DigitalOcean</span>
+            <p style="margin:6px 0 0;font-size:16px;line-height:1.55;color:#4A3F33;max-width:440px;text-wrap:pretty">Delivered React UI workflows for Kubernetes and Container Registry, including new checkout flows, in a micro-frontend setup with Module Federation.</p>
+            <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#6F6152;margin-top:6px">React · GraphQL · Apollo · Module Federation</span>
+          </div>
+        </div>
+
+        <div data-wp="" data-year="2022" style="position:relative;flex:0 0 min(92vw,780px);height:100%">
+          <span data-wp-dot="" style="position:absolute;left:-6px;top:calc(58% - 6px);width:13px;height:13px;border-radius:50%;background:#EAE0CE;border:1.5px solid #1F170F;box-sizing:border-box;transition:background .4s,border-color .4s"></span>
+          <div data-wp-year="" style="position:absolute;left:0;bottom:calc(42% + 28px);font-family:Syncopate,sans-serif;font-size:clamp(56px,7.5vw,112px);line-height:0.9;color:#CDBFA8;transition:color .5s">2022</div>
+          <div data-wp-body="" style="position:absolute;left:clamp(28px,24%,190px);right:clamp(28px,8%,64px);top:calc(58% + 36px);display:flex;flex-direction:column;gap:10px;opacity:0.4;transition:opacity .5s">
+            <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6F6152">May 2022 — Oct 2022 · 6 mos</span>
+            <h3 style="margin:4px 0 0;font-family:Syncopate,sans-serif;font-weight:700;font-size:clamp(16px,1.5vw,21px);letter-spacing:0.08em;text-transform:uppercase;line-height:1.3">Senior Frontend Developer</h3>
+            <span style="font-size:17px;font-weight:500;color:var(--accent)">OnDeck</span>
+            <p style="margin:6px 0 0;font-size:16px;line-height:1.55;color:#4A3F33;max-width:440px;text-wrap:pretty">Built a Stripe Marketplace App from scratch to production as the sole developer, with financial workflows for business loan applications.</p>
+            <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#6F6152;margin-top:6px">React · Stripe API</span>
+          </div>
+        </div>
+
+        <div data-wp="" data-year="2022" style="position:relative;flex:0 0 min(92vw,780px);height:100%">
+          <span data-wp-dot="" style="position:absolute;left:-6px;top:calc(58% - 6px);width:13px;height:13px;border-radius:50%;background:#EAE0CE;border:1.5px solid #1F170F;box-sizing:border-box;transition:background .4s,border-color .4s"></span>
+          <div data-wp-year="" style="position:absolute;left:0;bottom:calc(42% + 28px);font-family:Syncopate,sans-serif;font-size:clamp(56px,7.5vw,112px);line-height:0.9;color:#CDBFA8;transition:color .5s">2022</div>
+          <div data-wp-body="" style="position:absolute;left:clamp(28px,24%,190px);right:clamp(28px,8%,64px);top:calc(58% + 36px);display:flex;flex-direction:column;gap:10px;opacity:0.4;transition:opacity .5s">
+            <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6F6152">Nov 2022 — Aug 2023 · 10 mos</span>
+            <h3 style="margin:4px 0 0;font-family:Syncopate,sans-serif;font-weight:700;font-size:clamp(16px,1.5vw,21px);letter-spacing:0.08em;text-transform:uppercase;line-height:1.3">Senior Full-Stack Developer</h3>
+            <span style="font-size:17px;font-weight:500;color:var(--accent)">BP pulse</span>
+            <p style="margin:6px 0 0;font-size:16px;line-height:1.55;color:#4A3F33;max-width:440px;text-wrap:pretty">Built the marketing and product web experience for an EV charging network on a CMS-driven architecture, with reusable UI components and faster pages.</p>
+            <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#6F6152;margin-top:6px">React · Next.js · Contentful · GraphQL</span>
+          </div>
+        </div>
+
+        <div data-wp="" data-year="2023" style="position:relative;flex:0 0 min(92vw,780px);height:100%">
+          <span data-wp-dot="" style="position:absolute;left:-6px;top:calc(58% - 6px);width:13px;height:13px;border-radius:50%;background:#EAE0CE;border:1.5px solid #1F170F;box-sizing:border-box;transition:background .4s,border-color .4s"></span>
+          <div data-wp-year="" style="position:absolute;left:0;bottom:calc(42% + 28px);font-family:Syncopate,sans-serif;font-size:clamp(56px,7.5vw,112px);line-height:0.9;color:#CDBFA8;transition:color .5s">2023</div>
+          <div data-wp-body="" style="position:absolute;left:clamp(28px,24%,190px);right:clamp(28px,8%,64px);top:calc(58% + 36px);display:flex;flex-direction:column;gap:10px;opacity:0.4;transition:opacity .5s">
+            <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6F6152">Aug 2023 — Aug 2026 · 3 yrs 1 mo</span>
+            <h3 style="margin:4px 0 0;font-family:Syncopate,sans-serif;font-weight:700;font-size:clamp(16px,1.5vw,21px);letter-spacing:0.08em;text-transform:uppercase;line-height:1.3">Senior Full-Stack Developer</h3>
+            <span style="font-size:17px;font-weight:500;color:var(--accent)">Gett</span>
+            <p style="margin:6px 0 0;font-size:16px;line-height:1.55;color:#4A3F33;max-width:440px;text-wrap:pretty">Built carpooling and Bulk Requests for the B2B platform, cut the initial payload by 48% and dev startup from 1+ min to 2.2s with a move to Vite, and kept a shared UI library.</p>
+            <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#6F6152;margin-top:6px">React · TypeScript · Vite · Ruby · PostgreSQL</span>
+          </div>
+        </div>
+
+        <div data-wp="" data-year="2026" style="position:relative;flex:0 0 min(62vw,520px);height:100%">
+          <span data-wp-dot="" style="position:absolute;left:-6px;top:calc(58% - 6px);width:13px;height:13px;border-radius:50%;background:#EAE0CE;border:1.5px solid #1F170F;box-sizing:border-box;transition:background .4s,border-color .4s"></span>
+          <div data-wp-year="" style="position:absolute;left:0;bottom:calc(42% + 28px);font-family:Syncopate,sans-serif;font-size:clamp(56px,7.5vw,112px);line-height:0.9;color:#CDBFA8;transition:color .5s">2026</div>
+        </div>
+      </div>
+      <div style="flex:0 0 75vw"></div>
+
+    </div>
+    <span ref="{{ chTrav }}" style="position:absolute;left:32vw;top:calc(58% - 9px);width:19px;height:19px;margin-left:-9px;border-radius:50%;border:1px solid var(--accent);box-sizing:border-box;display:flex;align-items:center;justify-content:center"><i style="display:block;width:7px;height:7px;border-radius:50%;background:var(--accent)"></i></span>
+  </div>
+</section>
+
+<section id="projects" data-screen-label="Projects" style="position:relative;max-width:1440px;margin:0 auto;box-sizing:border-box;padding:clamp(120px,14vw,200px) clamp(20px,4vw,56px)">
+  <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:64px">
+    <div style="display:flex;flex-direction:column;gap:22px">
+      <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6F6152">(03) Pet projects</span>
+      <h2 style="margin:0;font-family:Syncopate,sans-serif;font-weight:700;font-size:clamp(30px,4.2vw,60px);letter-spacing:0.04em;line-height:1.05;text-transform:uppercase">Field<br>experiments</h2>
+    </div>
+    <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6F6152">Click to open</span>
+  </div>
+  <div style="display:flex;flex-direction:column;border-bottom:1px solid #C9BBA3">
+    <a href="project.html?p=builder" data-proj="flow" data-reveal="0" class="proj-row">
+      <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#6F6152">01</span>
+      <span data-proj-name="" style="font-family:Syncopate,sans-serif;font-weight:700;font-size:clamp(20px,2.6vw,38px);letter-spacing:0.06em;text-transform:uppercase;line-height:1.1;transition:transform .5s cubic-bezier(.2,.7,.1,1)">Builder</span>
+      <span style="font-size:16px;line-height:1.5;color:#4A3F33;max-width:420px">Pages wired to real API data, without hand-writing the fetching and mapping code.</span>
+      <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#6F6152">Next.js · 2026 ↗</span>
+    </a>
+    <a href="project.html?p=pronounce" data-proj="wave" data-reveal="60" class="proj-row">
+      <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#6F6152">02</span>
+      <span data-proj-name="" style="font-family:Syncopate,sans-serif;font-weight:700;font-size:clamp(20px,2.6vw,38px);letter-spacing:0.06em;text-transform:uppercase;line-height:1.1;transition:transform .5s cubic-bezier(.2,.7,.1,1)">Pronounce</span>
+      <span style="font-size:16px;line-height:1.5;color:#4A3F33;max-width:420px">Shows which sound in a phrase went wrong and how a native speaker says it.</span>
+      <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#6F6152">Azure Speech · 2026 ↗</span>
+    </a>
+  </div>
+</section>
+
+<section id="equipment" data-screen-label="Equipment" style="position:relative;max-width:1440px;margin:0 auto;box-sizing:border-box;padding:0 clamp(20px,4vw,56px) clamp(140px,16vw,220px)">
+  <span style="display:block;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6F6152;margin-bottom:48px">(04) Equipment</span>
+  <div data-reveal="0" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:40px">
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <span style="font-family:Syncopate,sans-serif;font-weight:700;font-size:12px;letter-spacing:0.16em;text-transform:uppercase">Languages</span>
+      <span style="font-size:18px;line-height:1.7;color:#4A3F33">TypeScript<br>JavaScript<br>Ruby<br>PHP<br>SQL</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <span style="font-family:Syncopate,sans-serif;font-weight:700;font-size:12px;letter-spacing:0.16em;text-transform:uppercase">Frontend</span>
+      <span style="font-size:18px;line-height:1.7;color:#4A3F33">React<br>Next.js<br>Vite<br>Module Federation<br>D3.js</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <span style="font-family:Syncopate,sans-serif;font-weight:700;font-size:12px;letter-spacing:0.16em;text-transform:uppercase">State &amp; data</span>
+      <span style="font-size:18px;line-height:1.7;color:#4A3F33">Redux<br>TanStack Query<br>GraphQL · Apollo<br>REST APIs<br>JMESPath</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <span style="font-family:Syncopate,sans-serif;font-weight:700;font-size:12px;letter-spacing:0.16em;text-transform:uppercase">UI &amp; styling</span>
+      <span style="font-size:18px;line-height:1.7;color:#4A3F33">Design systems<br>Storybook<br>SCSS · Styled Components<br>Ant Design · Material<br>a11y · i18n (Phrase)</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <span style="font-family:Syncopate,sans-serif;font-weight:700;font-size:12px;letter-spacing:0.16em;text-transform:uppercase">Mobile</span>
+      <span style="font-size:18px;line-height:1.7;color:#4A3F33">React Native<br>App Store releases<br>Google Play releases<br>Mobile E2E testing</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <span style="font-family:Syncopate,sans-serif;font-weight:700;font-size:12px;letter-spacing:0.16em;text-transform:uppercase">Backend &amp; cloud</span>
+      <span style="font-size:18px;line-height:1.7;color:#4A3F33">Node.js · Ruby<br>PostgreSQL · Supabase<br>Docker · Kubernetes<br>Vercel · Cloudflare Workers<br>DigitalOcean · Firebase</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <span style="font-family:Syncopate,sans-serif;font-weight:700;font-size:12px;letter-spacing:0.16em;text-transform:uppercase">Integrations</span>
+      <span style="font-size:18px;line-height:1.7;color:#4A3F33">Stripe API · payments<br>Contentful CMS<br>Azure Speech<br>LLM integrations</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <span style="font-family:Syncopate,sans-serif;font-weight:700;font-size:12px;letter-spacing:0.16em;text-transform:uppercase">Quality &amp; AI workflow</span>
+      <span style="font-size:18px;line-height:1.7;color:#4A3F33">Jest · Testing Library<br>Playwright · Cypress<br>Sentry · Coralogix<br>GitHub Actions<br>Claude Code · Codex · Cursor</span>
+    </div>
+  </div>
+</section>
+
+<section id="contact" ref="{{ contact }}" data-screen-label="Contact" style="position:relative;min-height:100vh;background:#3A2418;color:#EAE0CE;overflow:hidden;display:flex;flex-direction:column">
+  <canvas ref="{{ nightCanvas }}" style="position:absolute;inset:0;width:100%;height:100%;display:block"></canvas>
+  <div style="position:relative;flex:1;max-width:1328px;width:100%;margin:0 auto;box-sizing:border-box;padding:clamp(120px,14vw,200px) clamp(20px,4vw,56px) 0;display:flex;flex-direction:column;gap:28px">
+    <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#C2B29B">(05) Contact</span>
+    <h2 data-reveal="0" style="margin:0;font-family:Syncopate,sans-serif;font-weight:700;font-size:clamp(36px,7vw,112px);letter-spacing:0.06em;line-height:1;text-transform:uppercase">Say hello</h2>
+    <a href="mailto:andrei.shedav@gmail.com" data-magnet="" data-umami-event="email" style="align-self:flex-start;margin-top:20px;font-size:clamp(20px,2.2vw,30px);font-weight:300;border-bottom:1px solid var(--accent);padding-bottom:6px">andrei.shedav@gmail.com</a>
+    <div style="display:flex;flex-wrap:wrap;gap:12px 32px;margin-top:28px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#CBBFAC">
+      <a href="https://github.com/Shedav" data-umami-event="social" data-umami-event-network="github" target="_blank" rel="noopener">GitHub ↗</a>
+      <a href="https://linkedin.com/in/andrei-shedav" data-umami-event="social" data-umami-event-network="linkedin" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+  </div>
+  <footer style="position:relative;max-width:1328px;width:100%;margin:0 auto;box-sizing:border-box;padding:32px clamp(20px,4vw,56px);display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#A39581">
+    <span>© 2026 Andrei Shedav</span>
+    <a href="#top" style="color:#EAE0CE">Back to the top ↑</a>
+  </footer>
+</section>
+
+<div ref="{{ cRing }}" style="position:fixed;left:0;top:0;width:30px;height:30px;border:1px solid #1F170F;border-radius:50%;pointer-events:none;z-index:100;box-sizing:border-box;display:none;transform:translate(-200px,-200px)"></div>
+<div ref="{{ cDot }}" style="position:fixed;left:0;top:0;width:5px;height:5px;margin:-2.5px 0 0 -2.5px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:101;display:none;transform:translate(-200px,-200px)"></div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;heroLight&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;noon&quot;,&quot;dusk&quot;],&quot;default&quot;:&quot;noon&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Desert&quot;},&quot;wind&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:0,&quot;max&quot;:3,&quot;step&quot;:0.1,&quot;default&quot;:1,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Desert&quot;},&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#B4471B&quot;,&quot;options&quot;:[&quot;#B4471B&quot;,&quot;#8C2F1C&quot;,&quot;#B7792A&quot;,&quot;#2F5D62&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Look&quot;},&quot;customCursor&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Interaction&quot;}}">
+const PAL = {
+  noon: { sky0: '#EFE6D6', sky1: '#E6D2B2', sun: '#FBF6EC', glow: 'rgba(251,246,236,', layers: ['#DFC59E', '#D3AA7A', '#C08A58', '#A86F43'], dust: 'rgba(120,86,52,' },
+  dusk: { sky0: '#E6C39C', sky1: '#D58A57', sun: '#F7DDB8', glow: 'rgba(247,221,184,', layers: ['#C7845A', '#A9643E', '#86492D', '#5E321F'], dust: 'rgba(80,44,24,' }
+};
+const FRONT = '#EAE0CE';
+
+class Component extends DCLogic {
+  nav = React.createRef(); heroCanvas = React.createRef(); heroName = React.createRef();
+  aboutText = React.createRef(); chSec = React.createRef(); chTrack = React.createRef(); chProg = React.createRef();
+  chTrav = React.createRef(); chCount = React.createRef(); contact = React.createRef(); nightCanvas = React.createRef();
+  cRing = React.createRef(); cDot = React.createRef();
+  bgCanvas = React.createRef(); curtain = React.createRef();
+
+  renderVals() {
+    const r = {};
+    ['nav','heroCanvas','heroName','aboutText','chSec','chTrack','chProg','chTrav','chCount','contact','nightCanvas','cRing','cDot','bgCanvas','curtain'].forEach(k => r[k] = this[k]);
+    return r;
+  }
+  get accent() { return this.props.accent ?? '#B4471B'; }
+
+  componentDidMount() {
+    this.alive = true; this.reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.t0 = this.reduced ? -1e9 : performance.now();
+    document.documentElement.style.setProperty('--accent', this.accent);
+    this.mouse = { x: -9999, y: -9999, px: -9999, py: -9999, vx: 0, vy: 0, last: -1e9 };
+    this.worms = []; this.spray = []; this.windT = 0; this.wpIdx = -1;
+    this.onMove = e => { this.mouse.x = e.clientX; this.mouse.y = e.clientY; this.mouse.last = performance.now(); if (this.cursorOn) this.cDot.current.style.transform = `translate(${e.clientX}px,${e.clientY}px)`; };
+    this.onOver = e => { this.hoverEl = e.target.closest ? e.target.closest('a,button,[data-proj]') : null; };
+    this.onOut = e => { if (!e.relatedTarget) { this.mouse.x = -9999; this.mouse.y = -9999; this.hoverEl = null; } };
+    this.onResize = () => { clearTimeout(this.rt); this.rt = setTimeout(() => this.sizeAll(), 120); };
+    window.addEventListener('pointermove', this.onMove, { passive: true });
+    document.addEventListener('pointerover', this.onOver);
+    document.addEventListener('pointerout', this.onOut);
+    window.addEventListener('resize', this.onResize);
+    this.fine = window.matchMedia('(pointer:fine)').matches;
+    this.applyCursor();
+    this.hctx = this.heroCanvas.current.getContext('2d');
+    this.nctx = this.nightCanvas.current.getContext('2d');
+    this.bctx = this.bgCanvas.current.getContext('2d');
+    this.svel = 0; this.lastSy = window.scrollY; this.trail = []; this.nDust = null;
+    this.bgDust = Array.from({ length: 90 }, (_, i) => { const big = i < 14; return { x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight, vx: (big ? 0.06 : 0.15) + Math.random() * (big ? 0.12 : 0.35), vy: -(0.04 + Math.random() * 0.16), r: big ? 10 + Math.random() * 18 : 1 + Math.random() * 2.2, o: big ? 0.05 + Math.random() * 0.05 : 0.35 + Math.random() * 0.45, ph: Math.random() * 6.28 }; });
+    this.onShow = () => { const c = this.curtain.current; if (c && c.getAnimations) c.getAnimations({ subtree: true }).forEach(a => a.cancel()); };
+    window.addEventListener('pageshow', this.onShow);
+    this.heroCanvas.current.addEventListener('pointerdown', e => {
+      const r = this.heroCanvas.current.getBoundingClientRect();
+      this.worms.push({ x: e.clientX - r.left, dir: Math.random() < 0.5 ? -1 : 1, t: performance.now() });
+    });
+    this.sizeAll();
+    this.parts = Array.from({ length: 240 }, () => this.newPart(true));
+    this.stars = Array.from({ length: 90 }, () => ({ x: Math.random(), y: Math.random() * 0.6, r: Math.random() * 1.1 + 0.3, ph: Math.random() * 6.28 }));
+    if (!this.reduced) this.setupReveal();
+    // analytics: which sections people actually reach, once per visit
+    this.seen = new IntersectionObserver(es => es.forEach(en => {
+      if (!en.isIntersecting) return;
+      window.umami?.track('view-section', { section: en.target.id }); this.seen.unobserve(en.target);
+    }), { threshold: 0.3 });
+    document.querySelectorAll('section[id]:not(#top)').forEach(el => this.seen.observe(el));
+    this.wps = [...this.chTrack.current.querySelectorAll('[data-wp]')];
+    this.rows = [...document.querySelectorAll('[data-proj]')];
+    this.rows.forEach(row => row.addEventListener('click', e => {
+      window.umami?.track('open-project', { project: new URL(row.href).searchParams.get('p') });
+      if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+      if (this.reduced) return;
+      e.preventDefault();
+      this.cover(`(P/${row.firstElementChild.textContent.trim()}) Field experiment`, row.querySelector('[data-proj-name]').textContent, row.getAttribute('href'));
+    }));
+    this.mags = [...document.querySelectorAll('[data-magnet]')];
+    // mailto does nothing without a configured mail app, so also copy the address
+    this.mags.forEach(el => el.addEventListener('click', () => {
+      if (!navigator.clipboard || el._copied) return;
+      const text = el.textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        el._copied = true; el.textContent = 'Copied to clipboard ✓';
+        setTimeout(() => { el.textContent = text; el._copied = false; }, 1600);
+      }, () => {});
+    }));
+    const n = this.heroName.current;
+    if (n && n.animate && !this.reduced) n.animate([{ letterSpacing: '0.7em', opacity: 0, filter: 'blur(6px)' }, { letterSpacing: '0.28em', opacity: 1, filter: 'blur(0)' }], { duration: 2200, easing: 'cubic-bezier(.16,.8,.2,1)' });
+    const loop = t => { if (!this.alive) return; this.frame(t); this.raf = requestAnimationFrame(loop); };
+    this.raf = requestAnimationFrame(loop);
+  }
+  componentDidUpdate(prev) {
+    if (prev.accent !== this.props.accent) document.documentElement.style.setProperty('--accent', this.accent);
+    if (prev.customCursor !== this.props.customCursor) this.applyCursor();
+  }
+  componentWillUnmount() {
+    this.alive = false; cancelAnimationFrame(this.raf);
+    window.removeEventListener('pointermove', this.onMove);
+    document.removeEventListener('pointerover', this.onOver);
+    document.removeEventListener('pointerout', this.onOut);
+    window.removeEventListener('resize', this.onResize);
+    window.removeEventListener('pageshow', this.onShow);
+    this.io && this.io.disconnect(); this.seen && this.seen.disconnect();
+    document.documentElement.removeAttribute('data-cc');
+  }
+  // a dune sweeps up over the page, then the destination's title settles on its horizon
+  cover(num, name, href) {
+    const cur = this.curtain.current, E = 'cubic-bezier(.7,0,.2,1)', q = s => cur.querySelector(s);
+    q('[data-ct-num]').textContent = num; q('[data-ct-name]').textContent = name;
+    const show = name ? 1 : 0;
+    cur.animate([{ transform: 'translateY(calc(100% + 130px))' }, { transform: 'translateY(0)' }], { duration: 950, easing: E, fill: 'forwards' });
+    q('[data-ct-name]').animate([{ letterSpacing: '0.6em', opacity: 0, filter: 'blur(6px)' }, { letterSpacing: '0.12em', opacity: show, filter: 'blur(0)' }], { duration: 900, delay: 380, easing: 'cubic-bezier(.16,.8,.2,1)', fill: 'both' });
+    q('[data-ct-num]').animate([{ opacity: 0, transform: 'translateY(8px)' }, { opacity: show, transform: 'none' }], { duration: 600, delay: 480, easing: 'ease-out', fill: 'both' });
+    q('[data-ct-line]').animate([{ transform: 'scaleX(0)' }, { transform: `scaleX(${show})` }], { duration: 800, delay: 560, easing: E, fill: 'both' });
+    setTimeout(() => { window.location.href = href; }, name ? 1300 : 950);
+  }
+  css(el, k, v) { if (el['_' + k] !== v) { el['_' + k] = v; el.style[k] = v; } }
+  applyCursor() {
+    this.cursorOn = (this.props.customCursor ?? true) && this.fine;
+    if (this.cursorOn) document.documentElement.setAttribute('data-cc', '1'); else document.documentElement.removeAttribute('data-cc');
+    this.cRing.current.style.display = this.cursorOn ? 'block' : 'none';
+    this.cDot.current.style.display = this.cursorOn ? 'block' : 'none';
+  }
+  fit(c, ctx, max = 1.5) { // soft gradients and grains: 1.5x is visually identical to 2x at ~56% of the pixels
+    const dpr = Math.min(max, window.devicePixelRatio || 1), w = c.clientWidth, h = c.clientHeight;
+    c.width = w * dpr; c.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); return [w, h];
+  }
+  sizeAll() {
+    [this.hw, this.hh] = this.fit(this.heroCanvas.current, this.hctx);
+    [this.nw, this.nh] = this.fit(this.nightCanvas.current, this.nctx);
+    [this.bw, this.bh] = this.fit(this.bgCanvas.current, this.bctx); this.nDust = null; this.heroDrawn = this.nightDrawn = this.bgEmpty = false;
+    this.chDist = null;
+  }
+  newPart(rand) {
+    const h = this.hh || 800, w = this.hw || 1200;
+    return { x: rand ? Math.random() * w : -20, y: h * (0.45 + Math.random() * 0.55), s: Math.random(), ph: Math.random() * 6.28 };
+  }
+  setupReveal() {
+    const vh = window.innerHeight;
+    this.io = new IntersectionObserver(es => es.forEach(en => {
+      if (en.isIntersecting) { en.target.style.opacity = '1'; en.target.style.transform = 'none'; this.io.unobserve(en.target); }
+    }), { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+    document.querySelectorAll('[data-reveal]').forEach(el => {
+      if (el.getBoundingClientRect().top < vh) return;
+      const dl = el.dataset.reveal || 0;
+      el.style.opacity = '0'; el.style.transform = 'translateY(40px)';
+      el.style.transition = `opacity 1.2s cubic-bezier(.2,.7,.1,1) ${dl}ms, transform 1.3s cubic-bezier(.2,.7,.1,1) ${dl}ms`;
+      this.io.observe(el);
+    });
+  }
+
+  ridge(x, i, t, shift, w) {
+    const f = [0.0046, 0.0036, 0.0027, 0.002, 0.0016][i], u = (x + shift) * f + t * (0.25 + i * 0.12) + i * 1.7;
+    return Math.pow(1 - Math.abs(Math.sin(u)), 2) * 0.75 + 0.3 * Math.sin((x + shift) * f * 0.37 + i * 2.1 + t * 0.1);
+  }
+
+  drawHero(now, dt) {
+    const c = this.heroCanvas.current, ctx = this.hctx, w = this.hw, h = this.hh;
+    const r = c.getBoundingClientRect(); if (r.bottom < 0 || !w) return false;
+    const pal = PAL[this.props.heroLight ?? 'noon'] || PAL.noon, wind = this.props.wind ?? 1;
+    const sy = Math.max(0, -r.top), M = this.mouse;
+    const inside = M.y - r.top >= 0 && M.y - r.top <= r.height && M.x >= 0;
+    const tx = inside ? (M.x - r.left) / w - 0.5 : 0, ty = inside ? (M.y - r.top) / h - 0.5 : 0;
+    if (!this.pm) this.pm = { x: 0, y: 0 };
+    this.pm.x += (tx - this.pm.x) * 0.05; this.pm.y += (ty - this.pm.y) * 0.05;
+    const gust = Math.min(40, Math.hypot(M.vx, M.vy) * 0.6);
+    this.gs = (this.gs || 0) + (gust - (this.gs || 0)) * 0.05;
+    this.windT += dt * 0.00012 * (0.4 + wind) * (1 + this.gs * 0.04);
+    const t = this.windT;
+
+    const g = ctx.createLinearGradient(0, 0, 0, h);
+    g.addColorStop(0, pal.sky0); g.addColorStop(0.7, pal.sky1);
+    ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+
+    const intro = Math.min(1, (now - this.t0) / 2600), ease = 1 - Math.pow(1 - intro, 3);
+    const sr = Math.min(w, h) * 0.13, sx = w * (0.5 + this.pm.x * 0.05), sY = h * (0.52 + (1 - ease) * 0.22) + sy * 0.5 + this.pm.y * 12;
+    const rg = ctx.createRadialGradient(sx, sY, sr * 0.9, sx, sY, sr * 3.4);
+    rg.addColorStop(0, pal.glow + '0.55)'); rg.addColorStop(1, pal.glow + '0)');
+    ctx.fillStyle = rg; ctx.fillRect(0, 0, w, h);
+    ctx.fillStyle = pal.sun; ctx.beginPath(); ctx.arc(sx, sY, sr, 0, 6.2832); ctx.fill();
+
+    this.worms = this.worms.filter(wm => now - wm.t < 4200);
+    const bases = [0.6, 0.68, 0.76, 0.84, 0.92], amps = [0.07, 0.08, 0.085, 0.09, 0.06], depth = [0.15, 0.3, 0.5, 0.75, 1];
+    const step = 4;
+    for (let i = 0; i < 5; i++) {
+      const shift = this.pm.x * 60 * depth[i], lift = sy * 0.4 * (1 - depth[i]) - this.pm.y * 10 * depth[i];
+      ctx.beginPath(); ctx.moveTo(0, h);
+      for (let x = 0; x <= w + step; x += step) {
+        let y = bases[i] * h + lift - amps[i] * h * this.ridge(x, i, t, shift, w);
+        if (i === 4) for (const wm of this.worms) {
+          const age = now - wm.t, wx = wm.x + wm.dir * age * 0.22;
+          const amp = 26 * Math.min(1, age / 500) * Math.min(1, (4200 - age) / 900);
+          const q = (x - wx) / 70; y -= amp * Math.exp(-q * q);
+        }
+        ctx.lineTo(x, y);
+      }
+      ctx.lineTo(w, h); ctx.closePath();
+      ctx.fillStyle = i === 4 ? FRONT : pal.layers[i]; ctx.fill();
+    }
+
+    for (const wm of this.worms) {
+      const age = now - wm.t; if (age > 3300) continue;
+      const wx = wm.x + wm.dir * age * 0.22, wy = 0.92 * h - 0.06 * h * this.ridge(wx, 4, t, this.pm.x * 60, w) - 26 * Math.min(1, age / 500);
+      for (let k = 0; k < 2; k++) this.spray.push({ x: wx + (Math.random() - 0.5) * 50, y: wy, vx: (Math.random() - 0.5) * 1.4 - wm.dir * 0.6, vy: -Math.random() * 2.6 - 0.6, life: 1 });
+    }
+    ctx.fillStyle = pal.dust + '0.5)';
+    this.spray = this.spray.filter(p => (p.life -= 0.016) > 0);
+    for (const p of this.spray) { p.vy += 0.06; p.x += p.vx; p.y += p.vy; ctx.globalAlpha = p.life; ctx.fillRect(p.x, p.y, 1.6, 1.6); }
+    ctx.globalAlpha = 1;
+
+    ctx.lineWidth = 1; ctx.strokeStyle = pal.dust + '0.32)'; ctx.beginPath();
+    const mx = M.x - r.left, my = M.y - r.top;
+    for (const p of this.parts) {
+      const v = (1.2 + p.s * 2.6) * (0.3 + wind) * (1 + this.gs * 0.05);
+      let ex = 0, ey = 0;
+      if (inside) { const dx = p.x - mx, dy = p.y - my, d = Math.hypot(dx, dy); if (d < 150) { const k = 1 - d / 150; ex = M.vx * 0.5 * k; ey = M.vy * 0.5 * k; } }
+      p.x += v + ex; p.y += Math.sin(p.x * 0.01 + p.ph) * 0.35 + ey;
+      ctx.moveTo(p.x, p.y + sy * 0.2); ctx.lineTo(p.x - v * 4 - ex * 2, p.y + sy * 0.2 - ey * 2);
+      if (p.x > w + 30 || p.y < h * 0.3 || p.y > h + 10) Object.assign(p, this.newPart(false));
+    }
+    ctx.stroke();
+    return true;
+  }
+
+  drawBg(now) {
+    const ctx = this.bctx, w = this.bw, h = this.bh; if (!w) return;
+    const sy = window.scrollY, hh = this.hh || h, ct = this.contact.current.getBoundingClientRect();
+    const a = Math.max(0, Math.min(1, (sy - hh * 0.35) / (hh * 0.5)));
+    if (a <= 0 || ct.top <= 0) { if (!this.bgEmpty) { ctx.clearRect(0, 0, w, h); this.bgEmpty = true; } return; }
+    ctx.clearRect(0, 0, w, h); this.bgEmpty = false;
+    const t = now * 0.001;
+    for (const p of this.bgDust) {
+      p.x += p.vx + Math.sin(t * 0.3 + p.ph) * 0.12;
+      p.y += p.vy + Math.cos(t * 0.25 + p.ph) * 0.1;
+      if (p.x > w + 8) p.x = -8; if (p.x < -8) p.x = w + 8; if (p.y < -8) p.y = h + 8; if (p.y > h + 8) p.y = -8;
+      if (p.y > ct.top) continue;
+      const tw = 0.55 + 0.45 * Math.sin(t * 0.8 + p.ph);
+      ctx.fillStyle = p.r > 6 ? '#B4471B' : '#785432'; ctx.globalAlpha = p.o * tw * a;
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.2832); ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  drawNight(now) {
+    const c = this.nightCanvas.current, ctx = this.nctx, w = this.nw, h = this.nh, vh = window.innerHeight;
+    const r = c.getBoundingClientRect(); if (r.top > vh || r.bottom < 0 || !w) return false;
+    const t = now * 0.001, M = this.mouse, mxN = M.x > 0 ? M.x / window.innerWidth - 0.5 : 0;
+    if (!this.nm) this.nm = 0; this.nm += (mxN - this.nm) * 0.04;
+    const prog = Math.max(0, Math.min(1, 1 - r.top / vh));
+    const g = ctx.createLinearGradient(0, 0, 0, h);
+    g.addColorStop(0, '#24170F'); g.addColorStop(0.42, '#4A2A1A'); g.addColorStop(0.72, '#9A4B26'); g.addColorStop(0.9, '#D27A3E');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+    ctx.fillStyle = '#F0E2CC';
+    for (const s of this.stars) {
+      if (s.y > 0.42) continue;
+      ctx.globalAlpha = (0.2 + 0.5 * (0.5 + 0.5 * Math.sin(t * 1.3 + s.ph))) * (1 - s.y / 0.42);
+      ctx.fillRect(s.x * w - this.nm * 8, s.y * h, s.r, s.r);
+    }
+    ctx.globalAlpha = 1;
+    const mr = Math.max(16, Math.min(w, h) * 0.04);
+    ctx.fillStyle = 'rgba(240,226,204,0.85)'; ctx.beginPath(); ctx.arc(w * 0.84 - this.nm * 20, h * 0.16, mr, 0, 6.2832); ctx.fill();
+    ctx.fillStyle = 'rgba(214,190,160,0.6)'; ctx.beginPath(); ctx.arc(w * 0.9 - this.nm * 30, h * 0.09, mr * 0.42, 0, 6.2832); ctx.fill();
+    const sr = Math.min(w, h) * 0.17, sx = w * (0.68 + this.nm * 0.05), sY = h * (0.66 + prog * 0.12);
+    const rg = ctx.createRadialGradient(sx, sY, sr * 0.8, sx, sY, sr * 4.2);
+    rg.addColorStop(0, 'rgba(246,160,90,0.5)'); rg.addColorStop(1, 'rgba(246,160,90,0)');
+    ctx.fillStyle = rg; ctx.fillRect(0, 0, w, h);
+    ctx.fillStyle = '#F2A865'; ctx.beginPath(); ctx.arc(sx, sY, sr, 0, 6.2832); ctx.fill();
+    if (!this.nDust) this.nDust = Array.from({ length: 140 }, () => ({ x: Math.random() * w, y: h * (0.55 + Math.random() * 0.4), s: Math.random(), ph: Math.random() * 6.28 }));
+    const wind = this.props.wind ?? 1;
+    ctx.strokeStyle = 'rgba(250,196,140,0.35)'; ctx.lineWidth = 1; ctx.beginPath();
+    for (const p of this.nDust) {
+      const v = (0.8 + p.s * 2) * (0.3 + wind); p.x += v; p.y += Math.sin(p.x * 0.01 + p.ph) * 0.3;
+      if (p.x > w + 20) { p.x = -20; p.y = h * (0.55 + Math.random() * 0.4); }
+      ctx.moveTo(p.x, p.y); ctx.lineTo(p.x - v * 4, p.y);
+    }
+    ctx.stroke();
+    const cols = ['#7A3A1E', '#4E2615', '#24150D'], bases = [0.8, 0.88, 0.97], amps = [0.08, 0.08, 0.06];
+    const tt = now * 0.00004 * (0.4 + wind);
+    for (let i = 0; i < 3; i++) {
+      const pts = [];
+      for (let x = 0; x <= w + 4; x += 4) pts.push(bases[i] * h - amps[i] * h * this.ridge(x, i + 1, tt, this.nm * 50 * (i + 1), w));
+      ctx.beginPath(); ctx.moveTo(0, h); pts.forEach((y, k) => ctx.lineTo(k * 4, y)); ctx.lineTo(w, h); ctx.closePath();
+      ctx.fillStyle = cols[i]; ctx.fill();
+      ctx.beginPath(); pts.forEach((y, k) => k ? ctx.lineTo(k * 4, y) : ctx.moveTo(0, y));
+      ctx.strokeStyle = `rgba(246,170,110,${[0.45, 0.3, 0.18][i]})`; ctx.lineWidth = 1.2; ctx.stroke();
+    }
+    return true;
+  }
+
+  frame(now) {
+    const dt = Math.min(50, now - (this.lastT || now)); this.lastT = now;
+    const vh = window.innerHeight, vw = window.innerWidth, M = this.mouse;
+    const k = a => 1 - Math.pow(1 - a, dt / 16.67); // lerp factor tuned for 60fps, same feel at any fps
+    if (M.px > -9000 && M.x > -9000) { M.vx += ((M.x - M.px) - M.vx) * 0.3; M.vy += ((M.y - M.py) - M.vy) * 0.3; } else { M.vx *= 0.9; M.vy *= 0.9; }
+    M.px = M.x; M.py = M.y;
+
+    const sy = window.scrollY; this.svel += ((sy - this.lastSy) - this.svel) * 0.15; this.lastSy = sy;
+    if (!this.reduced) { this.drawHero(now, dt); this.drawBg(now); this.drawNight(now); }
+    else { if (!this.heroDrawn) this.heroDrawn = this.drawHero(now, 0); if (!this.nightDrawn) this.nightDrawn = this.drawNight(now); }
+
+    const at = this.aboutText.current;
+    if (at) {
+      const r = at.getBoundingClientRect();
+      const p = Math.max(0, Math.min(1, (vh * 0.85 - r.top) / (r.height + vh * 0.3)));
+      this.css(at, 'backgroundSize', `${(p * 100).toFixed(1)}% 100%, 100% 100%`);
+    }
+
+    const S = this.chSec.current, T = this.chTrack.current;
+    if (S && T) {
+      if (this.chDist == null) {
+        const tl = T.getBoundingClientRect().left; // rect, not offsetLeft: some waypoints sit in a positioned group
+        this.wpX = this.wps.map(el => el.getBoundingClientRect().left - tl);
+        this.cos = [...T.querySelectorAll('[data-co]')].map(el => { const l = el.firstChild; const r = el.getBoundingClientRect(); return { l, x: r.left - tl, end: r.right - tl, max: el.offsetWidth - l.offsetWidth }; });
+        const end = this.cos.length ? this.cos[this.cos.length - 1].end : this.wpX[this.wpX.length - 1];
+        this.chDist = Math.max(0, end - vw * 0.32); // stop where the last job ends
+        S.style.height = `${this.chDist + vh}px`; this.chProg.current.style.width = `${this.chDist + vw}px`;
+      }
+      const dist = this.chDist;
+      const r = S.getBoundingClientRect(), p = dist ? Math.max(0, Math.min(1, -r.top / dist)) : 0, x = -p * dist;
+      this.css(T, 'transform', `translate3d(${x.toFixed(1)}px,0,0)`);
+      for (const c of this.cos) this.css(c.l, 'transform', `translate3d(${Math.max(0, Math.min(c.max, 56 - c.x - x)).toFixed(1)}px,0,0)`);
+      const trav = vw * 0.32;
+      this.css(this.chProg.current, 'transform', `scaleX(${(Math.max(0, trav - x) / (dist + vw)).toFixed(4)})`);
+      let idx = -1;
+      this.wps.forEach((el, i) => {
+        const on = this.wpX[i] + x <= trav + 1; if (on) idx = i;
+        if (el._on !== on) {
+          el._on = on;
+          const d = el.querySelector('[data-wp-dot]'); d.style.background = on ? 'var(--accent)' : '#EAE0CE'; d.style.borderColor = on ? 'var(--accent)' : '#1F170F';
+          el.querySelector('[data-wp-year]').style.color = on ? '#1F170F' : '#CDBFA8';
+          const b = el.querySelector('[data-wp-body]'); if (b) b.style.opacity = on ? '1' : '0.4';
+        }
+      });
+      if (idx !== this.wpIdx) { this.wpIdx = idx; this.chCount.current.textContent = `${String(idx + 1).padStart(2, '0')} / ${String(this.wps.length).padStart(2, '0')}`; }
+    }
+
+    const ct = this.contact.current;
+    if (ct && this.nav.current) { const r = ct.getBoundingClientRect(); this.ctTop = r.top; const dark = r.top < 40 && r.bottom > 40; if (dark !== this.navDark) { this.navDark = dark; this.nav.current.style.color = dark ? '#EAE0CE' : '#1F170F'; } }
+
+    const row = this.hoverEl && this.hoverEl.closest ? this.hoverEl.closest('[data-proj]') : null;
+    if (row !== this.curRow) {
+      if (this.curRow) this.curRow.querySelector('[data-proj-name]').style.transform = '';
+      if (row) row.querySelector('[data-proj-name]').style.transform = 'translateX(18px)';
+      this.curRow = row;
+    }
+    for (const el of this.mags || []) {
+      const r = el.getBoundingClientRect(), tx = el._tx || 0, ty = el._ty || 0;
+      const cx = r.left + r.width / 2 - tx, cy = r.top + r.height / 2 - ty, dx = M.x - cx, dy = M.y - cy;
+      let gx = 0, gy = 0; if (Math.hypot(dx, dy) < Math.max(r.width, r.height) * 0.8) { gx = dx * 0.18; gy = dy * 0.3; }
+      el._tx = tx + (gx - tx) * 0.12; el._ty = ty + (gy - ty) * 0.12;
+      this.css(el, 'transform', `translate(${el._tx.toFixed(1)}px,${el._ty.toFixed(1)}px)`);
+    }
+
+    if (this.cursorOn) {
+      const ring = this.cRing.current, h = this.hoverEl;
+      const target = h ? 58 : 30;
+      if (this.rx === undefined) { this.rx = M.x; this.ry = M.y; this.rsz = 30; }
+      this.rx += (M.x - this.rx) * k(0.18); this.ry += (M.y - this.ry) * k(0.18);
+      const sz = this.rsz; this.rsz += (target - this.rsz) * k(0.16);
+      if (Math.abs(this.rsz - sz) > 0.05) ring.style.width = ring.style.height = `${this.rsz.toFixed(1)}px`; // width forces layout, skip once settled
+      const ringDark = M.y >= this.ctTop; // over the dark Contact section
+      if (ringDark !== this.ringDark) { this.ringDark = ringDark; ring.style.borderColor = ringDark ? '#EAE0CE' : '#1F170F'; }
+      this.css(ring, 'transform', `translate(${(this.rx - this.rsz / 2).toFixed(1)}px,${(this.ry - this.rsz / 2).toFixed(1)}px)`);
+    }
+  }
+}
+</script>
+</body>
+</html>
