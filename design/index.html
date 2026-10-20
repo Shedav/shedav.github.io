@@ -25,6 +25,23 @@ a{color:inherit;text-decoration:none;transition:color .25s}
 a:hover{color:var(--accent)}
 .proj-row{display:grid;grid-template-columns:48px minmax(0,1.1fr) minmax(0,1fr) 170px;align-items:baseline;gap:12px 32px;padding:34px 0;border-top:1px solid #C9BBA3}
 .proj-row>:last-child{text-align:right}
+@media (max-width:760px){
+.site-nav{background:linear-gradient(#EAE0CE 60%,rgba(234,224,206,0))}
+.site-nav.nav-dark{background:linear-gradient(#24170F 60%,rgba(36,23,15,0))}
+.ch-sec{height:auto!important}
+.ch-stick{position:relative!important;height:auto!important;overflow:visible!important;padding:clamp(96px,24vw,140px) 20px 40px}
+.ch-track{position:relative!important;transform:none!important;flex-direction:column;height:auto!important;padding-left:0!important}
+.ch-line,.ch-prog,.ch-trav,.ch-count,.ch-hint,.ch-tail{display:none!important}
+.ch-intro{flex:none!important;height:auto!important;margin-bottom:56px}
+.ch-intro>div{position:static!important}
+.ch-group{flex-direction:column;height:auto!important;border-left:1px solid #C9BBA3;margin:0 0 0 6px;padding-top:4px}
+.ch-group>[data-co]{position:relative!important;height:auto!important;bottom:auto!important;border:0!important;padding:0 0 28px 22px}
+.ch-group>[data-co]>span{position:static!important;transform:none!important;white-space:normal!important;line-height:1.6}
+[data-wp]{flex:none!important;height:auto!important;padding:0 0 48px 22px}
+[data-wp-dot]{left:-7px!important;top:12px!important}
+[data-wp-year]{position:static!important;font-size:40px!important;margin-bottom:16px}
+[data-wp-body]{position:static!important}
+}
 @media (max-width:860px){.proj-row{grid-template-columns:48px minmax(0,1fr)}.proj-row>:nth-child(n+3){grid-column:2;text-align:left}}
 html[data-cc="1"],html[data-cc="1"] *{cursor:none !important}
 </style>
@@ -33,7 +50,7 @@ html[data-cc="1"],html[data-cc="1"] *{cursor:none !important}
 <canvas ref="{{ bgCanvas }}" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;display:block"></canvas>
 <div ref="{{ curtain }}" style="position:fixed;left:0;right:0;top:0;height:100vh;z-index:200;background:#1F170F;color:#EAE0CE;pointer-events:none;transform:translateY(calc(100% + 130px))"><svg viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" style="position:absolute;left:0;bottom:calc(100% - 1px);width:100%;height:120px;display:block;"><path d="M0 120V42C180 6 400 8 620 44S1010 86 1210 34 1420 6 1440 14V120Z" fill="#4A2A1A"/><path d="M0 120V72C190 24 370 22 560 60S920 116 1100 62 1350 14 1440 40V120Z" fill="#1F170F"/></svg><svg viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" style="position:absolute;left:0;top:calc(100% - 1px);width:100%;height:120px;display:block;transform:scaleY(-1);"><path d="M0 120V42C180 6 400 8 620 44S1010 86 1210 34 1420 6 1440 14V120Z" fill="#4A2A1A"/><path d="M0 120V72C190 24 370 22 560 60S920 116 1100 62 1350 14 1440 40V120Z" fill="#1F170F"/></svg><div data-ct="" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;padding:0 20px;text-align:center"><span data-ct-num="" style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#C2B29B"></span><span data-ct-name="" style="font-family:Syncopate,sans-serif;font-weight:700;font-size:clamp(20px,3vw,44px);letter-spacing:0.12em;margin-right:-0.12em;text-transform:uppercase"></span><i data-ct-line="" style="display:block;width:min(320px,60vw);height:1px;background:var(--accent)"></i></div></div>
 
-<nav ref="{{ nav }}" style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:flex-end;gap:24px;padding:22px clamp(20px,4vw,56px);color:#1F170F;transition:color .4s">
+<nav ref="{{ nav }}" class="site-nav" style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:flex-end;gap:24px;padding:22px clamp(20px,4vw,56px);color:#1F170F;transition:color .4s">
   <div style="display:flex;gap:clamp(14px,2.6vw,36px);flex-wrap:wrap;justify-content:flex-end;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase">
     <a href="#about">About</a>
     <a href="#chronology">Chronology</a>
@@ -60,22 +77,22 @@ html[data-cc="1"],html[data-cc="1"] *{cursor:none !important}
   <span data-reveal="0" style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.08em;color:#6F6152">— A. Shedav, Warsaw, Poland</span>
 </section>
 
-<section id="chronology" ref="{{ chSec }}" data-screen-label="Chronology" style="position:relative;height:400vh">
-  <div style="position:sticky;top:0;height:100vh;overflow:hidden">
-    <div style="position:absolute;top:96px;right:clamp(20px,4vw,56px);font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6F6152;z-index:2" ref="{{ chCount }}">00 / 04</div>
-    <div ref="{{ chTrack }}" style="position:absolute;left:0;top:0;height:100%;display:flex;padding-left:clamp(20px,4vw,56px);will-change:transform">
-      <div style="position:absolute;left:0;right:0;top:58%;height:1px;background:#C9BBA3"></div>
-      <div ref="{{ chProg }}" style="position:absolute;left:0;top:calc(58% - 1px);height:3px;width:0;background:var(--accent);transform-origin:0 0;transform:scaleX(0)"></div>
+<section id="chronology" class="ch-sec" ref="{{ chSec }}" data-screen-label="Chronology" style="position:relative;height:400vh">
+  <div class="ch-stick" style="position:sticky;top:0;height:100vh;overflow:hidden">
+    <div style="position:absolute;top:96px;right:clamp(20px,4vw,56px);font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6F6152;z-index:2" class="ch-count" ref="{{ chCount }}">00 / 04</div>
+    <div ref="{{ chTrack }}" class="ch-track" style="position:absolute;left:0;top:0;height:100%;display:flex;padding-left:clamp(20px,4vw,56px);will-change:transform">
+      <div class="ch-line" style="position:absolute;left:0;right:0;top:58%;height:1px;background:#C9BBA3"></div>
+      <div ref="{{ chProg }}" class="ch-prog" style="position:absolute;left:0;top:calc(58% - 1px);height:3px;width:0;background:var(--accent);transform-origin:0 0;transform:scaleX(0)"></div>
 
-      <div style="position:relative;flex:0 0 min(84vw,640px);height:100%">
+      <div class="ch-intro" style="position:relative;flex:0 0 min(84vw,640px);height:100%">
         <div style="position:absolute;left:0;right:40px;bottom:calc(42% + 28px);display:flex;flex-direction:column;gap:22px">
           <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6F6152">(02) Chronology</span>
           <h2 style="margin:0;font-family:Syncopate,sans-serif;font-weight:700;font-size:clamp(30px,4.2vw,60px);letter-spacing:0.04em;line-height:1.05;text-transform:uppercase">The route<br>so far</h2>
         </div>
-        <span style="position:absolute;left:0;top:calc(58% + 36px);font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6F6152">Keep scrolling to travel →</span>
+        <span class="ch-hint" style="position:absolute;left:0;top:calc(58% + 36px);font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6F6152">Keep scrolling to travel →</span>
       </div>
 
-      <div style="position:relative;display:flex;height:100%">
+      <div class="ch-group" style="position:relative;display:flex;height:100%">
         <div data-co="" style="position:absolute;left:0;right:12px;bottom:calc(42% + 52px + clamp(56px,7.5vw,112px) * 0.9);height:10px;border:1px solid var(--accent);border-bottom:0;box-sizing:border-box"><span data-co-label="" style="position:absolute;left:0;bottom:calc(100% + 10px);white-space:nowrap;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent)">itv.by · Belarus</span></div>
         <div data-wp="" data-year="2014" style="position:relative;flex:0 0 min(92vw,780px);height:100%">
           <span data-wp-dot="" style="position:absolute;left:-6px;top:calc(58% - 6px);width:13px;height:13px;border-radius:50%;background:#EAE0CE;border:1.5px solid #1F170F;box-sizing:border-box;transition:background .4s,border-color .4s"></span>
@@ -90,7 +107,7 @@ html[data-cc="1"],html[data-cc="1"] *{cursor:none !important}
         </div>
 
       </div>
-      <div style="position:relative;display:flex;height:100%">
+      <div class="ch-group" style="position:relative;display:flex;height:100%">
         <div data-co="" style="position:absolute;left:0;right:12px;bottom:calc(42% + 52px + clamp(56px,7.5vw,112px) * 0.9);height:10px;border:1px solid var(--accent);border-bottom:0;box-sizing:border-box"><span data-co-label="" style="position:absolute;left:0;bottom:calc(100% + 10px);white-space:nowrap;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent)">IBA Group · Belarus</span></div>
         <div data-wp="" data-year="2015" style="position:relative;flex:0 0 min(92vw,780px);height:100%">
           <span data-wp-dot="" style="position:absolute;left:-6px;top:calc(58% - 6px);width:13px;height:13px;border-radius:50%;background:#EAE0CE;border:1.5px solid #1F170F;box-sizing:border-box;transition:background .4s,border-color .4s"></span>
@@ -105,7 +122,7 @@ html[data-cc="1"],html[data-cc="1"] *{cursor:none !important}
         </div>
 
       </div>
-      <div style="position:relative;display:flex;height:100%">
+      <div class="ch-group" style="position:relative;display:flex;height:100%">
         <div data-co="" style="position:absolute;left:0;right:12px;bottom:calc(42% + 52px + clamp(56px,7.5vw,112px) * 0.9);height:10px;border:1px solid var(--accent);border-bottom:0;box-sizing:border-box"><span data-co-label="" style="position:absolute;left:0;bottom:calc(100% + 10px);white-space:nowrap;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent)">Pleeco · USA, remote</span></div>
         <div data-wp="" data-year="2015" style="position:relative;flex:0 0 min(92vw,780px);height:100%">
           <span data-wp-dot="" style="position:absolute;left:-6px;top:calc(58% - 6px);width:13px;height:13px;border-radius:50%;background:#EAE0CE;border:1.5px solid #1F170F;box-sizing:border-box;transition:background .4s,border-color .4s"></span>
@@ -120,7 +137,7 @@ html[data-cc="1"],html[data-cc="1"] *{cursor:none !important}
         </div>
 
       </div>
-      <div style="position:relative;display:flex;height:100%">
+      <div class="ch-group" style="position:relative;display:flex;height:100%">
         <div data-co="" style="position:absolute;left:0;right:12px;bottom:calc(42% + 52px + clamp(56px,7.5vw,112px) * 0.9);height:10px;border:1px solid var(--accent);border-bottom:0;box-sizing:border-box"><span data-co-label="" style="position:absolute;left:0;bottom:calc(100% + 10px);white-space:nowrap;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent)">Sphere Partners · USA, remote · Oct 2018 — Aug 2026 · 7 yrs 11 mos</span></div>
         <div data-wp="" data-year="2018" style="position:relative;flex:0 0 min(92vw,780px);height:100%">
           <span data-wp-dot="" style="position:absolute;left:-6px;top:calc(58% - 6px);width:13px;height:13px;border-radius:50%;background:#EAE0CE;border:1.5px solid #1F170F;box-sizing:border-box;transition:background .4s,border-color .4s"></span>
@@ -187,10 +204,10 @@ html[data-cc="1"],html[data-cc="1"] *{cursor:none !important}
           <div data-wp-year="" style="position:absolute;left:0;bottom:calc(42% + 28px);font-family:Syncopate,sans-serif;font-size:clamp(56px,7.5vw,112px);line-height:0.9;color:#CDBFA8;transition:color .5s">2026</div>
         </div>
       </div>
-      <div style="flex:0 0 75vw"></div>
+      <div class="ch-tail" style="flex:0 0 75vw"></div>
 
     </div>
-    <span ref="{{ chTrav }}" style="position:absolute;left:32vw;top:calc(58% - 9px);width:19px;height:19px;margin-left:-9px;border-radius:50%;border:1px solid var(--accent);box-sizing:border-box;display:flex;align-items:center;justify-content:center"><i style="display:block;width:7px;height:7px;border-radius:50%;background:var(--accent)"></i></span>
+    <span ref="{{ chTrav }}" class="ch-trav" style="position:absolute;left:32vw;top:calc(58% - 9px);width:19px;height:19px;margin-left:-9px;border-radius:50%;border:1px solid var(--accent);box-sizing:border-box;display:flex;align-items:center;justify-content:center"><i style="display:block;width:7px;height:7px;border-radius:50%;background:var(--accent)"></i></span>
   </div>
 </section>
 
@@ -314,6 +331,7 @@ class Component extends DCLogic {
     document.addEventListener('pointerout', this.onOut);
     window.addEventListener('resize', this.onResize);
     this.fine = window.matchMedia('(pointer:fine)').matches;
+    this.mq = window.matchMedia('(max-width:760px)'); // same breakpoint as the vertical timeline CSS
     this.applyCursor();
     this.hctx = this.heroCanvas.current.getContext('2d');
     this.nctx = this.nightCanvas.current.getContext('2d');
@@ -388,6 +406,13 @@ class Component extends DCLogic {
     q('[data-ct-num]').animate([{ opacity: 0, transform: 'translateY(8px)' }, { opacity: show, transform: 'none' }], { duration: 600, delay: 480, easing: 'ease-out', fill: 'both' });
     q('[data-ct-line]').animate([{ transform: 'scaleX(0)' }, { transform: `scaleX(${show})` }], { duration: 800, delay: 560, easing: E, fill: 'both' });
     setTimeout(() => { window.location.href = href; }, name ? 1300 : 950);
+  }
+  setWp(el, on) {
+    if (el._on === on) return;
+    el._on = on;
+    const d = el.querySelector('[data-wp-dot]'); d.style.background = on ? 'var(--accent)' : '#EAE0CE'; d.style.borderColor = on ? 'var(--accent)' : '#1F170F';
+    el.querySelector('[data-wp-year]').style.color = on ? '#1F170F' : '#CDBFA8';
+    const b = el.querySelector('[data-wp-body]'); if (b) b.style.opacity = on ? '1' : '0.4';
   }
   css(el, k, v) { if (el['_' + k] !== v) { el['_' + k] = v; el.style[k] = v; } }
   applyCursor() {
@@ -581,7 +606,9 @@ class Component extends DCLogic {
     }
 
     const S = this.chSec.current, T = this.chTrack.current;
-    if (S && T) {
+    if (S && T && this.mq.matches) {
+      this.wps.forEach(el => this.setWp(el, el.getBoundingClientRect().top < vh * 0.62));
+    } else if (S && T) {
       if (this.chDist == null) {
         const tl = T.getBoundingClientRect().left; // rect, not offsetLeft: some waypoints sit in a positioned group
         this.wpX = this.wps.map(el => el.getBoundingClientRect().left - tl);
@@ -599,18 +626,13 @@ class Component extends DCLogic {
       let idx = -1;
       this.wps.forEach((el, i) => {
         const on = this.wpX[i] + x <= trav + 1; if (on) idx = i;
-        if (el._on !== on) {
-          el._on = on;
-          const d = el.querySelector('[data-wp-dot]'); d.style.background = on ? 'var(--accent)' : '#EAE0CE'; d.style.borderColor = on ? 'var(--accent)' : '#1F170F';
-          el.querySelector('[data-wp-year]').style.color = on ? '#1F170F' : '#CDBFA8';
-          const b = el.querySelector('[data-wp-body]'); if (b) b.style.opacity = on ? '1' : '0.4';
-        }
+        this.setWp(el, on);
       });
       if (idx !== this.wpIdx) { this.wpIdx = idx; this.chCount.current.textContent = `${String(idx + 1).padStart(2, '0')} / ${String(this.wps.length).padStart(2, '0')}`; }
     }
 
     const ct = this.contact.current;
-    if (ct && this.nav.current) { const r = ct.getBoundingClientRect(); this.ctTop = r.top; const dark = r.top < 40 && r.bottom > 40; if (dark !== this.navDark) { this.navDark = dark; this.nav.current.style.color = dark ? '#EAE0CE' : '#1F170F'; } }
+    if (ct && this.nav.current) { const r = ct.getBoundingClientRect(); this.ctTop = r.top; const dark = r.top < 40 && r.bottom > 40; if (dark !== this.navDark) { this.navDark = dark; this.nav.current.style.color = dark ? '#EAE0CE' : '#1F170F'; this.nav.current.classList.toggle('nav-dark', dark); } }
 
     const row = this.hoverEl && this.hoverEl.closest ? this.hoverEl.closest('[data-proj]') : null;
     if (row !== this.curRow) {
