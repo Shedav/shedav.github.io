@@ -456,7 +456,7 @@ class Component extends DCLogic {
 
   drawHero(now, dt) {
     const c = this.heroCanvas.current, ctx = this.hctx, w = this.hw, h = this.hh;
-    const r = c.getBoundingClientRect(); if (r.bottom < 0 || !w) return false;
+    const r = c.getBoundingClientRect(); if (r.bottom <= 0 || !w) return false;
     const pal = PAL[this.props.heroLight ?? 'noon'] || PAL.noon, wind = this.props.wind ?? 1;
     const sy = Math.max(0, -r.top), M = this.mouse;
     const inside = M.y - r.top >= 0 && M.y - r.top <= r.height && M.x >= 0;
@@ -653,11 +653,10 @@ class Component extends DCLogic {
       const target = h ? 58 : 30;
       if (this.rx === undefined) { this.rx = M.x; this.ry = M.y; this.rsz = 30; }
       this.rx += (M.x - this.rx) * k(0.18); this.ry += (M.y - this.ry) * k(0.18);
-      const sz = this.rsz; this.rsz += (target - this.rsz) * k(0.16);
-      if (Math.abs(this.rsz - sz) > 0.05) ring.style.width = ring.style.height = `${this.rsz.toFixed(1)}px`; // width forces layout, skip once settled
+      this.rsz += (target - this.rsz) * k(0.16);
       const ringDark = M.y >= this.ctTop; // over the dark Contact section
       if (ringDark !== this.ringDark) { this.ringDark = ringDark; ring.style.borderColor = ringDark ? '#EAE0CE' : '#1F170F'; }
-      this.css(ring, 'transform', `translate(${(this.rx - this.rsz / 2).toFixed(1)}px,${(this.ry - this.rsz / 2).toFixed(1)}px)`);
+      this.css(ring, 'transform', `translate(${(this.rx - 15).toFixed(1)}px,${(this.ry - 15).toFixed(1)}px) scale(${(this.rsz / 30).toFixed(3)})`);
     }
   }
 }
